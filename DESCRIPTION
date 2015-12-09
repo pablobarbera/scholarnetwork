@@ -1,0 +1,13 @@
+Package: scholarnetwork
+Type: Package
+Title: Extract and Visualize Google Scholar Collaboration Networks
+Version: 0.1
+Date: 2015-10-11
+Author: Pablo Barbera <pablo.barbera@nyu.edu>
+Maintainer: Pablo Barbera <pablo.barbera@nyu.edu>
+Description: Extracts publication information from Google Scholar, create network of
+  collaborators based on co-authored projects, and visualize network using
+  a force-directed layout algorithm.
+License: GPL-2
+LazyData: TRUE
+Depends: igraph, scholar, stringr, networkD3
