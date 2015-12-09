@@ -44,7 +44,7 @@ List of 2
 plotNetwork(d$nodes, d$edges, file="network.html")
 ```
 
-The output of this function is an interactive visualization of the network. The figure below shows a screenshot of this visualization.
+The output of this function is an interactive visualization of the network. The figure below shows a screenshot of this visualization. Click [__here__](http://pablobarbera.com/static/network.html) for the D3 visualization.
 
 <center><img src="img/interactive-network.png" style="width: 550px;"/></center>
 
