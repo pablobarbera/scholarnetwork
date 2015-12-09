@@ -1,8 +1,3 @@
-<script src="https://raw.githubusercontent.com/ramnathv/htmlwidgets/master/inst/www/htmlwidgets.js"></script>
-<script src="https://raw.githubusercontent.com/mbostock/d3/master/d3.min.js" charset="utf-8"></script>
-<script src="https://raw.githubusercontent.com/christophergandrud/networkD3/master/inst/htmlwidgets/forceNetwork.js"></script>
-
-
 # Extract and Visualize Google Scholar Collaboration Networks
 
 **scholarnetwork** is an R package that provides functions to extracts publication information from Google Scholar, create network of collaborators based on co-authored projects, and visualize these networks using a force-directed layout algorithm.
@@ -48,13 +43,13 @@ List of 2
 ```r
 plotNetwork(d$nodes, d$edges, file="network.html")
 ```
-<div id="htmlwidget_container">
-  <div id="htmlwidget-491" style="width:550px;height:400px;" class="forceNetwork"></div>
-</div>
-<script type="application/json" data-for="htmlwidget-491">{"x":{"links":{"source":[26,4,21,26,31,11,16,22,25,23,26,26,29,26,26,36,26,5,6,22,23,26,32,0,1,4,5,13,20,22,24,26,27,32,35,33,1,4,6,11,13,14,20,23,24,25,26,27,32,26,30,34,14,20,26,17,26,30,34,1,4,24,26,27,32,26,31,26,26,11,1,3,4,5,6,22,23,28,29,30,31,38,26,32,3,7,26,1,4,5,14,18,20,22,24,26,26,30,0,26,26,38,39,26,26,38],"target":[0,1,2,2,2,5,5,5,5,6,7,8,8,9,10,10,12,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14,14,14,15,16,16,16,16,16,16,16,16,16,16,16,16,16,17,17,17,18,18,18,19,19,19,19,20,20,20,20,20,20,21,21,22,24,25,26,26,26,26,26,26,26,26,26,26,26,26,27,27,28,30,30,32,32,32,32,32,32,32,32,32,34,34,35,35,36,36,36,37,39,39]},"nodes":{"name":["A Boydstun","A Valeriani","A Venetz","C Roca Cuberes","C Vaccari","D Penfold-Brown","E Borra","E Dinas","G Rivero","G Sood","H Schmitt","I Cioroianu","J Arregui","J Jost","J Nagler","J Subirats","J Tucker","JA Mayoral","JA Tucker","JR Montero","JT Jost","K Ackermann","M Metzger","N Hassanpour","N Wang","NYU Jonathan Nagler","P Barberá","P Egan","P Estelrich Arce","P Fernández-Vázquez","P Riera","PC Bauer","R Bonneau","R Gallego","R Gómez","S Linn","SA Popa","T Zeitzoff","Y Theocharis","Z Fazekas"],"group":[11,7,10,8,7,1,3,4,5,13,2,1,14,3,7,12,3,9,7,9,7,10,6,3,7,1,6,7,8,5,4,10,7,12,9,11,2,15,2,2],"nodesize":[0.75,1.69047619047619,0.75,0.666666666666667,1.69047619047619,1.58333333333333,0.8,0.666666666666667,1.66666666666667,0.5,0.666666666666667,0.75,0.5,1.63333333333333,5.74047619047619,0.5,4.07380952380952,0.8,0.8,0.8,4.15714285714286,0.75,2.33333333333333,0.8,0.833333333333333,0.75,15.5071428571429,0.833333333333333,0.666666666666667,0.666666666666667,1.46666666666667,0.75,4.99047619047619,0.5,0.8,0.75,1.41666666666667,0.5,0.75,0.75]},"options":{"NodeID":"label","Group":"group","colourScale":"d3.scale.category20()","fontSize":10,"fontFamily":"serif","clickTextSize":25,"linkDistance":50,"linkWidth":"1","charge":-500,"linkColour":"#666","opacity":0.75,"zoom":false,"legend":false,"nodesize":true,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[]}</script>
-<script type="application/htmlwidget-sizing" data-for="htmlwidget-491">{"viewer":{"width":550,"height":400,"padding":10,"fill":false},"browser":{"width":550,"height":400,"padding":10,"fill":false}}</script>
+
+The output of this function is an interactive visualization of the network. The figure below shows a screenshot of this visualization.
+
+<center><img src="img/interactive-network.png" style="width: 550px;"/></center>
 
 
+## Additional examples ##
 
 The output of the `extractNetwork` function can also be used to generate a static version of this visualization with e.g. `ggplot2`:
 
