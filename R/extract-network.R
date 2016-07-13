@@ -22,7 +22,7 @@
 #' }
 #'
 
-extractNetwork <- function(id, n=500, largest_component=TRUE, ...){
+extractNetwork <- function(id, n=500, largest_component=FALSE, ...){
 
   # downloading publications
   pubs <- scholar::get_publications(id=id, pagesize=n, ...)
@@ -35,19 +35,25 @@ extractNetwork <- function(id, n=500, largest_component=TRUE, ...){
                      FUN=function(x) sum(x))
   names(edges)[3] <- "weight"
 
-  ### SELECT LARGEST COMPONENT
-
   # extracting node-level information
-  network <- igraph::graph.edgelist(as.matrix(edges[,c("node1", "node2")]), directed=FALSE)
+  network <- igraph::graph.edgelist(as.matrix(edges[,c("node1", "node2")]), 
+    directed=FALSE)
   igraph::edge_attr(network, "weight") <- edges$weight
+ 
+  ### SELECT LARGEST COMPONENT
+  if (largest_component==TRUE){
+    network <- decompose(network)[[1]]
+  }
+
   fc <- igraph::walktrap.community(network)
   nodes <- data.frame(label = igraph::V(network)$name,
                       degree=igraph::strength(network), group=fc$membership,
                       stringsAsFactors=F)
   nodes <- nodes[order(nodes$label),]
-
+  if (largest_component==TRUE){
+    edges <- edges[edges$node1 %in% nodes$label & edges$node2 %in% nodes$label,]
+  }
   return(list(nodes=nodes, edges=edges))
-
 }
 
 extractAuthors <- function(x){
@@ -56,6 +62,13 @@ extractAuthors <- function(x){
   authors <- authors[grepl('[A-Za-z]+', authors)]
   # cleaning author list
   authors <- stringr::str_trim(authors)
+  # keeping only initial of first name
+  first <- gsub('(^[A-Z]{1}).*', authors, repl="\\1")
+  last <- gsub("^[A-Z]* ([[:alnum:]'’]+).*", authors, repl="\\1")
+  # fixing capitalization of last name
+  last <- gsub("(^|'|’|[[:space:]])([[:alpha:]])", "\\1\\U\\2", last, perl=TRUE)
+  last <- stringr::str_to_title(last)
+  authors <- paste(first, last, sep=" ")
   # if more than one author, create edge list
   if (length(authors)>1){
     edges <- as.data.frame(t(combn(x=authors, m=2)), stringsAsFactors=F)
