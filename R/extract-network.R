@@ -65,6 +65,8 @@ extractAuthors <- function(x){
   # keeping only initial of first name
   first <- gsub('(^[A-Z]{1}).*', authors, repl="\\1")
   last <- gsub("^[A-Z]* ([[:alnum:]'’]+).*", authors, repl="\\1")
+  #fix curly apostrophes
+  last <- gsub('’', "\\'", last)
   # fixing capitalization of last name
   last <- gsub("(^|'|’|[[:space:]])([[:alpha:]])", "\\1\\U\\2", last, perl=TRUE)
   last <- stringr::str_to_title(last)
